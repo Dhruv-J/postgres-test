@@ -1,0 +1,16 @@
+#To use docker with postgres and to run the postgres server,
+#the port must be exposed to the outside of the container.
+#Use the following command:
+docker run -p host_port:container_port --name container_name postgress
+#-p means that the following part of the command will give the ports to use
+#usually the container default port is used, which is 5432
+#--name container_name shows the name of the container
+#example:
+docker run --rm -p 5432:5432 --name pg postgres
+
+#how to connect pgadmin (can only do while server is running)
+docker run --rm --name pgadmin -p 5050:80 -e PGADMIN_DEFAULT_EMAIL="name@example.com" -e PGADMIN_DEFAULT_PASSWORD="password" dpage/pgadmin4
+#80 is the default port for pgadmin
+#PGADMIN_DEFAULT_EMAIL and PGADMIN_DEFAULT_PASSWORD are environmental variables that must be explicitly defined
+#dpage/pgadmin is the docker image that is pulled
+#the --rm tag allows the user to delete the container upon termination, making it easier to debug
